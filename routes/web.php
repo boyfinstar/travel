@@ -13,12 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PagesController@index');
-Route::get('/index', 'PagesController@index');
 
-Route::get('/about', 'PagesController@about');
-Route::get('/services', 'PagesController@about');
-Route::get('/about', 'PagesController@about');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/index', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+
+Route::get('/about', 'HomeController@about');
+Route::get('/services', 'HomeController@services');
+Route::get('/portfolio', 'HomeController@portfolio');
+Route::get('/test', 'HomeController@test');
+
+Route::get('/create', 'PostController@create');
+
+
+Route::get('/login', 'LoginController@login')->name('login');
 
 // Route::get(/)
 
@@ -26,3 +34,4 @@ Route::get('/about', 'PagesController@about');
 // Route::get('index', function () {
 //     return view('index');
 // });
+Auth::routes();
