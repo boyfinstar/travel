@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,11 @@ Route::get('/test', 'HomeController@test');
 
 Route::get('/create', 'PostController@create');
 
+Route::post('store', 'PostController@store');
 
-Route::get('/login', 'LoginController@login')->name('login');
+
+// Route::get('/login', 'LoginController@login')->name('login');
+// Route::post('/store', 'LoginController@login');
 
 // Route::get(/)
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use Carbon;
 
 class HomeController extends Controller
 {
@@ -27,9 +29,20 @@ class HomeController extends Controller
     // }
 
     public function index(){
+
+        $posts = Post::with('user')->latest()->get();
+
+        // dd($posts);
         
-        return view('pages.index');
+        return view('pages.index', compact('posts'));
         
+        
+        //this one is to eager load the user details along with the post
+        // $posts = Post::with('user')->latest()
+
+        //     ->filter(request()->only(['month', 'year']))
+
+        //     ->get();
     }
 
     public function about(){

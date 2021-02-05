@@ -48,37 +48,22 @@
     <main role="main" class="container" style="padding-bottom: 20px;">
       <div class="row">
         <div class="col-md-8 blog-main">
+          
           <h3 class="pb-4 mb-4 font-italic border-bottom">
             <b> Recent Posts </b>
           </h3>
+          @foreach ($posts as $post)
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Sample blog post</h2>
-            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
 
-            <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic
-              typography, images, and code are all supported.</p>
+            <h2 class="blog-post-title">{{ $post->title }}</h2>
+            <p class="blog-post-meta">{{ $post->created_at }} <a href="#">{{ $post->user->name }}</a></p>
+            <p class="blog-post-body">{!! $post->body !!}</p>
+
             <hr>
-            <p>Cum sociis natoque penatibus et magnis <a href="#">This is suppose to be a link i guess</a>, nascetur ridiculus mus.
-              Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est
-              at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <blockquote>
-              <p>This na where the blockquote dey oh. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu
-                leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </blockquote>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum.
-              Aenean lacinia bibendum nulla sed consectetur.</p>
-
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia
-              bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac
-              cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <ul>
-              <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-              <li>Donec id elit non mi porta gravida at eget metus.</li>
-              <li>Nulla vitae elit libero, a pharetra augue.</li>
-            </ul>
           </div>
 
+          @endforeach
           <nav class="blog-pagination">
             <a class="btn btn-outline-primary" href="#">Older</a>
             <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
