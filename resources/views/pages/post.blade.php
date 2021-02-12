@@ -24,51 +24,46 @@
       </div>
     </header><!-- #header -->
 
-    <!--==========================
-        Intro Section
-      ============================-->
-    <section id="intro" class="clearfix">
-      <div class="container">
+    <br>
+    <br>
+    <br>
 
-        <div class="intro-img">
-          <img src="img/intro-img.svg" alt="" class="img-fluid">
-        </div>
-
-        <div class="intro-info">
-          <h2>We provide<br><span>solutions</span><br>for your business!</h2>
-          <div>
-            <a href="about" class="btn-get-started scrollto">Get Started</a>
-            <a href="services" class="btn-services scrollto">Our Services</a>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- #intro -->
-
-    <main role="main" class="container" style="padding-bottom: 20px;">
+    <main role="main" class="container" style="padding-bottom: 20px; margin-top: 50px;">
       <div class="row">
         <div class="col-md-8 blog-main">
           
           <h3 class="pb-4 mb-4 font-italic border-bottom">
             <b> Recent Posts </b>
           </h3>
-          @foreach ($posts as $post)
+          {{-- @foreach ($posts as $post) --}}
 
           <div class="blog-post">
 
-            <h2 class="blog-post-title"><a href="posts/{{ $post->id }}"> {{ $post->title }}</a></h2>
-            <p class="blog-post-meta">{{ $post->created_at->toDayDateTimeString() }}<a href="#">{{ $post->user->name }}</a></p>
+            <h2 class="blog-post-title">{!! $post->title !!}</h2>
+            <p class="blog-post-meta">Post by <a href="#">{{ $post->user->name }}</a> at {{ $post->created_at->toDayDateTimeString() }}</p>
             <div class="post-content">
                 {!! $post->body !!}
             </div>
             <hr>
           </div>
 
-          @endforeach
-          <nav class="blog-pagination">
-            <a class="btn btn-outline-primary" href="#">Older</a>
-            <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-          </nav>
+          {{-- @endforeach --}}
+          
+          <div class="card shadow-sm" style="padding: 10px;">
+            <h3 class="pb-4 mb-4 font-italic">
+                Comments
+            </h3>
+
+
+            <div>
+
+                <p class="blog-post-meta">Comment by <a href="#"> Baddo </a> at Monday 6, October 2021</p>
+                <div class="post-content">
+                    Wetin be this thing wey you type so
+                </div>
+
+            </div>
+          </div>
         </div>
 
         <!-- /.blog-post -->

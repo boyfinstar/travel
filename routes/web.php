@@ -23,6 +23,7 @@ Route::get('/about', 'HomeController@about');
 Route::get('/services', 'HomeController@services');
 Route::get('/portfolio', 'HomeController@portfolio');
 Route::get('/test', 'HomeController@test');
+Route::get('/posts/{post}', 'HomeController@show');
 
 Route::get('/create', 'PostController@create');
 
