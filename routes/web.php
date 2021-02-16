@@ -26,8 +26,9 @@ Route::get('/test', 'HomeController@test');
 Route::get('/posts/{post}', 'HomeController@show');
 
 Route::get('/create', 'PostController@create');
-
 Route::post('store', 'PostController@store');
+
+Route::post('/comment', 'CommentController@store');
 
 
 // Route::get('/login', 'LoginController@login')->name('login');

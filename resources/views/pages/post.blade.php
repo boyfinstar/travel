@@ -51,6 +51,25 @@
           
           <div class="card shadow-sm" style="padding: 10px;">
             <h3 class="pb-4 mb-4 font-italic">
+                Add a Comment
+            </h3>
+
+            <div>
+                <form method="POST" action="/comment">
+
+                  {{ csrf_field() }}
+
+                <div class="form-group">
+                  <label for="body">Commment</label>
+                  <textarea class="ckeditor form-control" id="body" name="body"> </textarea>
+              </div>
+
+                </form>
+            </div>
+          </div>
+          <br>
+          <div class="card shadow-sm" style="padding: 10px;">
+            <h3 class="pb-4 mb-4 font-italic">
                 Comments
             </h3>
 
@@ -104,4 +123,10 @@
         </aside><!-- /.blog-sidebar -->
     </main>
 
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.ckeditor').ckeditor();
+            });
+        </script>
 @endsection

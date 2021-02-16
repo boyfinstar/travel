@@ -4,17 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Comment extends Model
 {
-    protected $fillable = ['title', 'body', 'user_id'];
+    protected $fillable = ['body'];
 
     public function user()
     {
         return $this->belongsTo(User::class);  
     }
 
-    public function comment()
+    public function post($id)
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(Post::class);
     }
 }
