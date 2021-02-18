@@ -65,13 +65,15 @@ class HomeController extends Controller
 
     public function test(){
         
-        return view('pages.test');
-        
     }
 
-    public function show(Post $post){
+    public function show(Post $posts){
 
-        return view('pages.post', compact(['post']));
+        $posts = Post::find($post_id) with(['comment'])->latest()->get();
+
+        dd($posts);
+
+        return view('pages.post', compact(['posts']));
 
     }
 

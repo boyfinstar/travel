@@ -35,19 +35,16 @@
           <h3 class="pb-4 mb-4 font-italic border-bottom">
             <b> Recent Posts </b>
           </h3>
-          {{-- @foreach ($posts as $post) --}}
 
           <div class="blog-post">
-
-            <h2 class="blog-post-title">{!! $post->title !!}</h2>
-            <p class="blog-post-meta">Post by <a href="#">{{ $post->user->name }}</a> at {{ $post->created_at->toDayDateTimeString() }}</p>
+            
+            <h2 class="blog-post-title">{!! $posts->title !!}</h2>
+            <p class="blog-post-meta">Post by <a href="#">{{ $posts->user->name }}</a> at {{ $posts->created_at->toDayDateTimeString() }}</p>
             <div class="post-content">
-                {!! $post->body !!}
+                {!! $posts->body !!}
             </div>
             <hr>
           </div>
-
-          {{-- @endforeach --}}
           
           <div class="card shadow-sm" style="padding: 10px;">
             <h3 class="pb-4 mb-4 font-italic">
@@ -62,7 +59,11 @@
                 <div class="form-group">
                   <label for="body">Commment</label>
                   <textarea class="ckeditor form-control" id="body" name="body"> </textarea>
-              </div>
+                </div>
+
+                <div class="form-group align-content">
+                  <button type="submit" class="btn btn-primary mx-auto">Post</button>
+                </div>
 
                 </form>
             </div>
@@ -73,15 +74,17 @@
                 Comments
             </h3>
 
-
+            @foreach ($posts->comment as $comments)
+                
             <div>
-
-                <p class="blog-post-meta">Comment by <a href="#"> Baddo </a> at Monday 6, October 2021</p>
-                <div class="post-content">
-                    Wetin be this thing wey you type so
-                </div>
-
+              <p class="blog-post-meta">Comment by <a href="#"> Baddo </a> {{ $comments->created_at }} at Monday 6, October 2021</p>
+              <div class="post-content">
+                Wetin be this thing wey you type so
+              </div>
             </div>
+
+            @endforeach
+
           </div>
         </div>
 

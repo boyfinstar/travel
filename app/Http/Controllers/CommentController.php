@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Post;
 use App\User;
+use App\Comment;
 
 class CommentController extends Controller
 {
@@ -17,14 +18,20 @@ class CommentController extends Controller
 
     public function store(){
 
-        $post = new post;
+        $post = new comment;
+        $id = auth()->user()->id;
 
         $this->validate(request(), [
 
-            'body' => 'required';
+            'body' => 'required'
 
-        ])
+        ]);
+        
+        $post->user_id = $id;
+        $post->body = request('body');
+        $post->save();
 
         return back();
     }
+
 }
