@@ -24,6 +24,7 @@ Route::get('/services', 'HomeController@services');
 Route::get('/portfolio', 'HomeController@portfolio');
 Route::get('/test', 'HomeController@test');
 Route::get('/posts/{post}', 'HomeController@show');
+Route::get('/profile', 'HomeController@profile');
 
 Route::get('/create', 'PostController@create');
 Route::post('store', 'PostController@store');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 use Carbon;
 
 class HomeController extends Controller
@@ -67,13 +68,27 @@ class HomeController extends Controller
         
     }
 
-    public function show(Post $posts){
+    public function show(Post $post){
 
-        $posts = Post::find($post_id) with(['comment'])->latest()->get();
+        $postWithComments = $post->load(['comment.user', 'user']);
 
-        dd($posts);
+        // dd($postWithComments);
 
-        return view('pages.post', compact(['posts']));
+        return view('pages.post', compact('postWithComments'));
+
+    }
+
+    public function profile(){
+
+        $id = Auth()->user()->id;
+
+        // dd($id);
+
+        $profile = User::all()->where('user_id', $id)->get();
+
+        dd($profile);
+
+        return view('pages.profile', compact('profile'));
 
     }
 

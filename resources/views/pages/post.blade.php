@@ -38,10 +38,10 @@
 
           <div class="blog-post">
             
-            <h2 class="blog-post-title">{!! $posts->title !!}</h2>
-            <p class="blog-post-meta">Post by <a href="#">{{ $posts->user->name }}</a> at {{ $posts->created_at->toDayDateTimeString() }}</p>
+            <h2 class="blog-post-title">{!! $postWithComments->title !!}</h2>
+            <p class="blog-post-meta">Post by <a href="#">{{ $postWithComments->user->name }}</a> at {{ $postWithComments->created_at->toDayDateTimeString() }}</p>
             <div class="post-content">
-                {!! $posts->body !!}
+                {!! $postWithComments->body !!}
             </div>
             <hr>
           </div>
@@ -74,12 +74,20 @@
                 Comments
             </h3>
 
-            @foreach ($posts->comment as $comments)
+            @foreach ($postWithComments->comment as $com)
+
+            {{-- {{ dd($com->toArray()) }} --}}
+
+            {{-- {{ dd($com->user->toArray()) }} --}}
+
+            {{-- {{ dd($com->user) }} --}}
+
+            {{-- {{ $com->user->name }} --}}
                 
             <div>
-              <p class="blog-post-meta">Comment by <a href="#"> Baddo </a> {{ $comments->created_at }} at Monday 6, October 2021</p>
+              <p class="blog-post-meta">Comment by <a href="#"> boss </a> {{ $com->created_at->toDayDateTimeString() }} </p>
               <div class="post-content">
-                Wetin be this thing wey you type so
+                {{ $com->body }}
               </div>
             </div>
 
