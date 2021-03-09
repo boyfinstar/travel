@@ -24,14 +24,17 @@ Route::get('/services', 'HomeController@services');
 Route::get('/portfolio', 'HomeController@portfolio');
 Route::get('/test', 'HomeController@test');
 Route::get('/posts/{post}', 'HomeController@show');
+
 Route::get('/profile', 'HomeController@profile');
+Route::post('/profile', 'HomeController@store');
 
 Route::get('/create', 'PostController@create');
 Route::post('store', 'PostController@store');
 
-Route::post('/comment', 'CommentController@store');
+Route::post('/post/{post}/comment', 'CommentController@store');
 
-
+Route::get('/test', 'HomeController@test');
+Route::post('/test', 'HomeController@upload');
 // Route::get('/login', 'LoginController@login')->name('login');
 // Route::post('/store', 'LoginController@login');
 

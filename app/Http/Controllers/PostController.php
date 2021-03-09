@@ -24,8 +24,6 @@ class PostController extends Controller
     public function store()
     {
         $post = new Post;
-
-
         // this is for the validation
         $this->validate(request(), [
             'title' => 'required',

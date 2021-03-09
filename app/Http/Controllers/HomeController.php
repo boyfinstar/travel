@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use Carbon;
+use Symfony\Component\Routing\Router;
 
 class HomeController extends Controller
 {
@@ -65,6 +66,8 @@ class HomeController extends Controller
     }
 
     public function test(){
+
+        return view('pages.test');
         
     }
 
@@ -80,16 +83,79 @@ class HomeController extends Controller
 
     public function profile(){
 
-        $id = Auth()->user()->id;
-
+        // $id = Auth()->user()->id;
         // dd($id);
+        // $profile = User::where('id', $id)->first();
+        // dd($profile);
 
-        $profile = User::all()->where('user_id', $id)->get();
+        return view('pages.profile');
 
-        dd($profile);
+    }
 
-        return view('pages.profile', compact('profile'));
+    
+    public function upload(Request $request){
 
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $imageName = time(). '.'.$request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+   
+        return back()
+            ->with('success','You have successfully upload image.')
+            ->with('image',$imageName);
+        
+    }
+
+    public function store(Request $request){
+
+        // $store = new User;
+
+        $request->validate([
+
+            'name' => 'required',
+            'lastname' => 'confirmed',
+            'phone' => 'confirmed',
+            'email' => 'required|email',
+            'location' => 'confirmed',
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // Get current user
+        $user = User::findOrFail(auth()->user()->id);
+
+        $user->name = $request->input('name');
+        $user->lastname = request('lastname');
+        $user->phone = request('phone');
+        $user->email = request('email');
+        $user->location = request('location');
+        $user->profile_image = request('profile_image');
+
+        // Check if a profile image has been uploaded
+        if ($request->has('profile_image')) {
+            // Get image file
+            $image = $request->file('profile_image');
+            // Make a image name based on user name and current timestamp
+            $name = Str::slug(request('name')).'_'.time();
+            // Define folder path
+            $folder = '/images/';
+            // Make a file path where image will be stored [ folder path + file name + file extension]
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            // Upload image
+            $this->uploadOne($image, $folder, 'public', $name);
+            // Set user profile image path in database to filePath
+            $user->profile_image = $filePath;
+        }
+
+        // Persist user record to database
+        $user->save();
+
+        // Return user back and show a flash message
+        return back()->with(['status' => 'Profile updated successfully.']);
+
+        
     }
 
 }

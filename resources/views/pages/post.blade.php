@@ -52,7 +52,7 @@
             </h3>
 
             <div>
-                <form method="POST" action="/comment">
+                <form method="POST" action="/post/{{ $postWithComments->id }}/comment">
 
                   {{ csrf_field() }}
 
