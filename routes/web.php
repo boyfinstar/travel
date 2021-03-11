@@ -26,7 +26,7 @@ Route::get('/test', 'HomeController@test');
 Route::get('/posts/{post}', 'HomeController@show');
 
 Route::get('/profile', 'HomeController@profile');
-Route::post('/profile', 'HomeController@store');
+Route::put('/profile', 'HomeController@store');
 
 Route::get('/create', 'PostController@create');
 Route::post('store', 'PostController@store');

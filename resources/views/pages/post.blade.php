@@ -28,6 +28,8 @@
     <br>
     <br>
 
+    @include('partials.errors')
+
     <main role="main" class="container" style="padding-bottom: 20px; margin-top: 50px;">
       <div class="row">
         <div class="col-md-8 blog-main">
@@ -84,10 +86,10 @@
 
             {{-- {{ $com->user->name }} --}}
                 
-            <div>
-              <p class="blog-post-meta">Comment by <a href="#"> boss </a> {{ $com->created_at->toDayDateTimeString() }} </p>
+            <div class="card" style="margin-bottom: 5px;">
+              <p class="blog-post-meta">Comment by <a href="#"> boss </a> {!! $com->created_at->toDayDateTimeString() !!} </p>
               <div class="post-content">
-                {{ $com->body }}
+                {!! $com->body !!}
               </div>
             </div>
 

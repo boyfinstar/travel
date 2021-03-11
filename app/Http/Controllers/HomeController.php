@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
-use Carbon;
 use Symfony\Component\Routing\Router;
+use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -109,29 +111,42 @@ class HomeController extends Controller
         
     }
 
+    public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
+    {
+        $name = !is_null($filename) ? $filename : Str::random(25);
+
+        $file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
+
+        return $file;
+    }
+
     public function store(Request $request){
 
         // $store = new User;
-
+        // dd($request->all());
         $request->validate([
 
             'name' => 'required',
-            'lastname' => 'confirmed',
-            'phone' => 'confirmed',
+            'lastname' => 'required',
+            'phone' => 'required',
             'email' => 'required|email',
-            'location' => 'confirmed',
+            'location' => 'required',
             'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
+
+        // dd($request->all());
 
         // Get current user
         $user = User::findOrFail(auth()->user()->id);
 
-        $user->name = $request->input('name');
+        $user->name = request('name');
         $user->lastname = request('lastname');
         $user->phone = request('phone');
         $user->email = request('email');
         $user->location = request('location');
-        $user->profile_image = request('profile_image');
+        // $user->profile_image = request('profile_image');
+
+        // dd($user->profile_image);
 
         // Check if a profile image has been uploaded
         if ($request->has('profile_image')) {
@@ -153,7 +168,7 @@ class HomeController extends Controller
         $user->save();
 
         // Return user back and show a flash message
-        return back()->with(['status' => 'Profile updated successfully.']);
+        return back()->with(['success' => 'Profile updated successfully.']);
 
         
     }

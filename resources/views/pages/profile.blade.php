@@ -24,12 +24,11 @@
             <!--left col-->
 
             <div class="text-center">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                <img src="{{ Auth::user()->profile_image }}" class="avatar img-circle img-thumbnail"
                     alt="avatar">
                 <h6>Upload a different photo...</h6>
-                <input type="file" class="text-center center-block file-upload">
             </div>
-            </hr>
+
             <br>
 
             <div class="panel panel-default">
@@ -48,7 +47,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Social Media</div>
                 <div class="panel-body">
-                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i
+                    <a href="{{ Auth::user()->email }}"> <i class="fa fa-facebook fa-2x"></i> </a> <i class="fa fa-github fa-2x"></i> <i
                         class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i
                         class="fa fa-google-plus fa-2x"></i>
                 </div>
@@ -62,9 +61,24 @@
             </ul>
 
             <div class="tab-content">
+                
+                @include('partials.errors')
+
                 <div class="tab-pane active" id="home">
                     <hr>
                     <form class="form" action="/profile" method="POST" id="registrationForm" enctype="multipart/form-data">
+                       
+                        @if(!$errors->isEmpty())
+                        
+                        <div class="alert alert-danger" role="alert">
+                            <ul>
+                                @foreach($errors->all() as $err)
+                                    <li>{{$err}}</li>
+                                @endforeach
+                            </ul>
+                          </div>
+                        @endif
+                        
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -139,7 +153,7 @@
                             </div>
                         </div>
                     </form>
-
+                  
                 </div>
                 <!--/tab-pane-->
 
@@ -151,6 +165,5 @@
 
     </div>
     <!--/row-->
-
 
     @endsection
