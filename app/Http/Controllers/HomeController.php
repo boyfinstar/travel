@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Router;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
 
 class HomeController extends Controller
 {
@@ -32,9 +33,15 @@ class HomeController extends Controller
     //     return view('/');
     // }
 
+
+    public function boot()
+    {
+        Paginator::useBootstrap();
+    }
+
     public function index(){
 
-        $posts = Post::with('user')->latest()->get();
+        $posts = Post::with('user')->latest()->paginate(5);
 
         // dd($posts);
         

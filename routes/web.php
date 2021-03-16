@@ -28,13 +28,17 @@ Route::get('/posts/{post}', 'HomeController@show');
 Route::get('/profile', 'HomeController@profile');
 Route::put('/profile', 'HomeController@store');
 
+Route::get('/test', 'HomeController@test');
+Route::post('/test', 'HomeController@upload');
+
 Route::get('/create', 'PostController@create');
-Route::post('store', 'PostController@store');
+Route::put('store', 'PostController@store');
+Route::get('/posts/{post}/edit', 'PostController@edit');
+Route::delete('/delete', 'PostContrller@destroy');
 
 Route::post('/post/{post}/comment', 'CommentController@store');
 
-Route::get('/test', 'HomeController@test');
-Route::post('/test', 'HomeController@upload');
+
 // Route::get('/login', 'LoginController@login')->name('login');
 // Route::post('/store', 'LoginController@login');
 

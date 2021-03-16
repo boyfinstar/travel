@@ -58,4 +58,14 @@ class PostController extends Controller
 
         // return redirect('/');
     }
+
+    public function edit(Post $post){
+
+        $editPost = $post->load('user');
+
+        // dd($editPost);
+
+        return view('posts.edit', compact('editPost'));
+
+    }
 }

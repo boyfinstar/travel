@@ -2,6 +2,3 @@ body {
   background: blue;
 }
 
-.post-content * {
-  word-break: break-all;
-}

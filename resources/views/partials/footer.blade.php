@@ -2,7 +2,7 @@
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
+  <footer id="footer" >
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -76,22 +76,22 @@
   <!-- <div id="preloader"></div> -->
 
   <!-- JavaScript Libraries -->
-  <script src="../js/jquery.min.js"></script>
-  <script src="../js/jquery-migrate.min.js"></script>
-  <script src="../js/bootstrap.bundle.min.js"></script>
-  <script src="../js/easing.js"></script>
-  <script src="../js/mobile-nav.js"></script>
-  <script src="../js/wow.min.js"></script>
-  <script src="../js/waypoints.min.js"></script>
-  <script src="../js/counterup.min.js"></script>
-  <script src="../js/owl.carousel.min.js"></script>
-  <script src="../js/isotope.pkgd.js"></script>
-  <script src="../js/lightbox.min.js"></script>
+  <script src="{{ URL::asset('js/jquery.min.js') }}"></script>
+  <script src="{{ URL::asset('js/jquery-migrate.min.js') }}"></script>
+  <script src="{{ URL::asset('js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ URL::asset('js/easing.js') }}"></script>
+  <script src="{{ URL::asset('js/mobile-nav.js') }}"></script>
+  <script src="{{ URL::asset('js/wow.min.js') }}"></script>
+  <script src="{{ URL::asset('js/waypoints.min.js') }}"></script>
+  <script src="{{ URL::asset('js/counterup.min.js') }}"></script>
+  <script src="{{ URL::asset('js/owl.carousel.min.js') }}"></script>
+  <script src="{{ URL::asset('js/isotope.pkgd.js') }}"></script>
+  <script src="{{ URL::asset('js/lightbox.min.js') }}"></script>
   <!-- Contact Form JavaScript File -->
-  <script src="../js/contactform.js"></script>
+  <script src="{{ URL::asset('js/contactform.js') }}"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="../js/main.js"></script>
+  <script src="{{ URL::asset('js/main.js') }}"></script>
 
 </body>
 </html>
