@@ -3,10 +3,11 @@
 @section ('content')
 
     <div class="col-md-6 card" style="margin: auto; margin-top: 120px; margin-bottom: 50px;">
+        @include('partials.errors')
         <h1>Edit your Post</h1>
         <hr>
-        {{ dd($editPost) }}
-        <form method="POST" action="/store">
+        {{-- {{ dd($editPost) }} --}}
+        <form method="POST" action="/posts/{{ $editPost->id }}/update">
 
             @method('PUT')
             @csrf
@@ -23,12 +24,20 @@
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Edit</button>
-                <a href="/destroy" style="justify-content: right" class="d-flex justify-content-between"> <button class="btn btn-danger"> Delete </button> </a>
+                {{-- <a href="/destroy" style="justify-content: right" class="d-flex justify-content-between"> <button class="btn btn-danger"> Delete </button> </a> --}}
             </div>
 
             {{-- @include('partials.errors') --}}
 
         </form>
+        <a class="dropdown-item" href="index" onclick="event.preventDefault();
+                                         document.getElementById('index-form').submit();">
+                            index
+                        </a>
+
+                        <form id="index-form" action="index" method="POST" class="btn btn-primary">
+                            @csrf
+                        </form>
         {{-- <script>
             CKEDITOR.replace( 'body' );
         </script> --}}

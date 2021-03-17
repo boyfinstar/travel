@@ -63,9 +63,57 @@ class PostController extends Controller
 
         $editPost = $post->load('user');
 
+        if(Auth()->user()->id !== $post->user_id){
+
+            return redirect('/index')->with(['denied' => 'Unauthorized Page']);
+        }
+
         // dd($editPost);
 
         return view('posts.edit', compact('editPost'));
+
+    }
+
+    public function update(Post $post){
+
+        $updatePost = $post->load('user');
+
+        if(Auth()->user()->id !== $post->user_id){
+
+            return redirect('/index')->with(['denied' => 'Unauthorized Page']);
+        }
+
+        // dd($editPost);
+
+        $id = auth()->user()->id;
+
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        // $updatePost->user_id = $id;
+        $updatePost->title = request('title');
+        $updatePost->body = request('body');
+        $updatePost->save();
+        return back()->with(['success' => 'Post Updated']);
+
+    }
+
+    public function destroy(Post $post){
+
+        $deletePost = Post::find($post);
+
+        if (Auth()->user()->id !== $post->user_id){
+
+            return redirect('/index')->with(['denied' => 'Unauthorized Access']);
+        }
+
+        $deletePost->delete();
+
+        // dd($editPost);
+
+        return view('posts.index')->with(['delete' => 'Post successfully deleted']);
 
     }
 }

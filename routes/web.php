@@ -32,9 +32,10 @@ Route::get('/test', 'HomeController@test');
 Route::post('/test', 'HomeController@upload');
 
 Route::get('/create', 'PostController@create');
-Route::put('store', 'PostController@store');
+Route::post('store', 'PostController@store');
 Route::get('/posts/{post}/edit', 'PostController@edit');
-Route::delete('/delete', 'PostContrller@destroy');
+Route::put('/posts/{post}/update', 'PostController@update');
+Route::get('/destroy/{post}', 'PostController@destroy');
 
 Route::post('/post/{post}/comment', 'CommentController@store');
 

@@ -26,3 +26,17 @@
             <strong>{{ $message }}</strong>
     </div>
 @endif
+
+@if ($message = Session::get('delete'))
+    <div class="alert alert-success alert-block" style="z-index: 10px;">
+        <button type="button" class="close" data-dismiss="alert">×</button>	
+            <strong>{{ $message }}</strong>
+    </div>
+@endif
+
+@if ($message = Session::get('denied'))
+    <div class="alert alert-danger alert-block" style="z-index: 10px;">
+        <button type="button" class="close" data-dismiss="alert">×</button>	
+            <strong>{{ $message }}</strong>
+    </div>
+@endif

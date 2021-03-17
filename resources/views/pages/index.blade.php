@@ -46,6 +46,7 @@
     </section><!-- #intro -->
 
     <main role="main" class="container" style="padding-bottom: 20px;">
+      @include('partials.errors')
       <div class="row">
         <div class="col-md-8 blog-main">
           

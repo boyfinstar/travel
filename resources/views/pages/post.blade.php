@@ -55,8 +55,8 @@
             <a href="/posts/{{ $postWithComments->id }}/edit"><button type="submit"
                 class="btn btn-secondary mx-auto">Edit</button></a>
 
-            <a href="/destroy"><button formaction="/action_page2.php" value=""
-              class="btn btn-danger mx-auto" style="position: right;">Delete</button></a>
+            <a href="/destroy/{{ $postWithComments->id }}"><button
+              class="btn btn-danger mx-auto pull-right" style="position: right;">Delete</button></a>
           </div>
 
           @endif
