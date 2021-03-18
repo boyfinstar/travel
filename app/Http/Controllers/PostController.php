@@ -102,18 +102,22 @@ class PostController extends Controller
 
     public function destroy(Post $post){
 
-        $deletePost = Post::find($post);
+        $deletePost = Post::find($post->id);
+
+        // dd($deletePost);
 
         if (Auth()->user()->id !== $post->user_id){
 
             return redirect('/index')->with(['denied' => 'Unauthorized Access']);
         }
 
+        // dd($deletePost);
+
         $deletePost->delete();
 
         // dd($editPost);
 
-        return view('posts.index')->with(['delete' => 'Post successfully deleted']);
+        return view('pages.index')->with(['delete' => 'Post successfully deleted']);
 
     }
 }

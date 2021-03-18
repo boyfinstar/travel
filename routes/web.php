@@ -35,7 +35,7 @@ Route::get('/create', 'PostController@create');
 Route::post('store', 'PostController@store');
 Route::get('/posts/{post}/edit', 'PostController@edit');
 Route::put('/posts/{post}/update', 'PostController@update');
-Route::get('/destroy/{post}', 'PostController@destroy');
+Route::delete('/destroy/{post}', 'PostController@destroy');
 
 Route::post('/post/{post}/comment', 'CommentController@store');
 

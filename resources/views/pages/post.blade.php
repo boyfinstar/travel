@@ -55,8 +55,13 @@
             <a href="/posts/{{ $postWithComments->id }}/edit"><button type="submit"
                 class="btn btn-secondary mx-auto">Edit</button></a>
 
-            <a href="/destroy/{{ $postWithComments->id }}"><button
-              class="btn btn-danger mx-auto pull-right" style="position: right;">Delete</button></a>
+            <div class="pull-right">
+              <form action="/destroy/{{ $postWithComments->id }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger mx-auto">Delete</button>
+              </form>
+            </div>
           </div>
 
           @endif
@@ -77,8 +82,9 @@
               {{ csrf_field() }}
 
               <div class="form-group">
-                <label for="body">Commment</label>
-                <textarea class="ckeditor form-control" id="body" name="body"> </textarea>
+                {{-- <label for="body">Comment</label> --}}
+                <textarea class="ckeditor form-control" id="body" name="body"
+                  placeholder="Please type your comment here"> </textarea>
               </div>
 
               <div class="form-group align-content">
