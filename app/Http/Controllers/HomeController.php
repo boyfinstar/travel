@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Query\Grammars\SQLiteGrammar;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -39,13 +41,31 @@ class HomeController extends Controller
         Paginator::useBootstrap();
     }
 
-    public function index(){
+    public function index(Request $request){
 
-        $posts = Post::with('user')->latest()->paginate(5);
+        // $posts = Post::with('user')->latest()->paginate(5);
 
+        $posts = Post::with('user')->where(function($query) use($request){
+
+            if ($request->month) {
+                $query->whereMonth('created_at', $request->month);
+                $query->whereYear('created_at', $request->year);
+            }
+        }
+        )->latest()->paginate();
+        // )->latest()->toSql();
+        // )->toSql();
+
+        $archives = Post::selectRaw('year(created_at) year, month(created_at) month, count(*) published')
+                                    ->groupBy('year', 'month')
+                                    ->orderByRaw('min(created_at) desc')
+                                    ->get()->toArray();
+
+        // return $archives['month'];
+        
         // dd($posts);
         
-        return view('pages.index', compact('posts'));
+        return view('pages.index', compact(['posts', 'archives']));
         
         
         //this one is to eager load the user details along with the post
